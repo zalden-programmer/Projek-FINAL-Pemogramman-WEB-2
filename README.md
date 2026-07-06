@@ -84,6 +84,13 @@ Aplikasi ini dirancang menggunakan standar industri modern untuk memastikan kece
 * **Library Grafik:** Chart.js / ApexCharts (Bekerja secara asinkronus menyerap data JSON)
 * **Manajemen Paket:** Composer (PHP Dependensi) & NPM (Asset Bundler)
 
+## 🗄️ Database Configuration (.sql)
+
+Proyek ini menggunakan database relasional MySQL. Arsitektur tabel telah dirancang dengan struktur yang bersih, relasi *foreign key* yang tepat, serta dilengkapi dengan data sampel untuk memudahkan pengujian.
+- [x] **Export Database Lengkap:** Berkas database utuh telah diekspor dan disediakan di dalam repositori proyek (nama file: `perpustakaan_laravel.sql`).
+- [x] **Include Sample Data:** Sudah termasuk data sampel (*dummy data*) untuk tabel Buku, Anggota, Petugas/Admin, dan beberapa contoh Transaksi aktif agar aplikasi langsung siap diuji tanpa harus menginput dari awal.
+- [x] **Clear Table Structure:** Struktur tabel bersih menggunakan standar penamaan *snake_case* Laravel, lengkap dengan indexing pada kolom pencarian dan *cascade delete* pada relasi tabel transaksi demi menjaga integritas data.
+
 ---
 
 ## Dokumentasi Antarmuka (Screenshots)
@@ -138,6 +145,7 @@ Gunakan Composer untuk mengunduh seluruh pustaka (library) backend PHP yang dibu
 ```bash
 composer install
 ```
+
 ### 3. Replika Konfigurasi Lingkungan (.env)
 Salin berkas cetak biru pengaturan lokal menjadi file .env aktif yang dibaca sistem.
 ```bash
