@@ -1,66 +1,172 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Sistem Informasi Manajemen Perpustakaan Digital
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi Manajemen Perpustakaan berbasis web yang tangguh, responsif, dan aman, dibangun menggunakan **PHP Laravel**. Proyek ini dikembangkan secara komprehensif sebagai proyek tugas akhir (Final Project) untuk mata kuliah **Pemrograman Web 2**. Sistem ini mengotomatiskan seluruh alur kerja perpustakaan konvensional, mulai dari manajemen inventaris buku, keanggotaan, kalkulasi denda, hingga visualisasi data pada dashboard analitik.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Informasi Pengembang
+- Proyek ini dirancang, dikembangkan, dan diuji secara mandiri oleh:
+- Nama Lengkap: Meiffio Hasanain M
+- Nomor Induk Mahasiswa (NIM): 60324061
+- Program Studi: Informatika
+- Profil Utama: @zalden-programmer
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Fitur Aplikasi (Status: Terimplementasi Sempurna)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Berikut adalah daftar modul dan fitur wajib yang telah selesai dikembangkan dan berfungsi 100% tanpa kendala:
 
-## Learning Laravel
+### 1. Authentication System
+Sistem keamanan berlapis untuk menjamin integritas data perpustakaan.
+- [x] **Alur Autentikasi Lengkap:** Fitur Login, Register (pendaftaran petugas baru), dan Logout yang aman.
+- [x] **Password Hashing:** Keamanan kredensial pengguna terjamin menggunakan algoritma hashing bawaan Laravel (**Bcrypt**).
+- [x] **Middleware Protection:** Proteksi jalur URL (*routing*) ketat. Halaman administrasi tidak dapat diakses tanpa sesi login yang valid.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 2. CRUD Buku Lengkap
+Modul pengelolaan data katalog dan inventarisasi buku perpustakaan.
+- [x] **Operasi CRUD Arsitektural:** Pembuatan (*Create*), pembacaan (*Read*), pembaruan (*Update*), dan penghapusan (*Delete*) data buku beserta relasi kategorinya.
+- [x] **Validasi Sisi Server (Request Validation):** Validasi ketat untuk input ISBN unik, judul, penulis, tahun terbit, dan jumlah stok buku guna menghindari redundansi data.
+- [x] **Search & Filter Eksklusif:** Memudahkan pencarian buku berdasarkan judul, penulis, atau penerbit, serta filter dinamis per kategori.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 3. CRUD Anggota Lengkap
+Modul manajemen data profil pengguna/mahasiswa yang terdaftar sebagai anggota perpustakaan.
+- [x] **Operasi CRUD Komprehensif:** Manajemen menyeluruh data anggota (Tambah, Lihat Detail, Ubah Riwayat, Hapus Anggota).
+- [x] **Date Handling Manusiawi:** Format tanggal lahir, tanggal pendaftaran, dan status masa aktif kartu anggota terkelola dengan baik menggunakan library **Carbon**.
+- [x] **Validasi Kontak Ketat:** Validasi keaslian format email (RFC compliant) dan nomor telepon/WhatsApp untuk kebutuhan korespondensi denda.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 4. Transaksi Peminjaman Buku
+Sistem pencatatan sirkulasi buku keluar yang cerdas dan otomatis.
+- [x] **Form Peminjaman Interaktif:** Input data dinamis yang menghubungkan ID Anggota dengan beberapa ID Buku sekaligus dalam satu transaksi.
+- [x] **Auto Update Stok (Dekremen):** Stok buku otomatis berkurang 1 (`-1`) sesaat setelah transaksi peminjaman berhasil divalidasi. Aplikasi mendeteksi dan menolak transaksi jika stok buku habis (`0`).
+- [x] **Generate Kode Transaksi Unik:** Pembuatan kode transaksi otomatis yang terstandardisasi (contoh: `TRX-XXXX`) sebagai primary key pelacakan.
+- [x] **Otomatisasi Tanggal Kembali:** Sistem otomatis menghitung dan menetapkan batas waktu pengembalian tepat **7 hari (+7 hari)** setelah tanggal peminjaman dibuat.
 
-## Laravel Sponsors
+### 5. Pengembalian Buku & Manajemen Denda
+Modul sirkulasi masuk dan penegakan regulasi keterlambatan.
+- [x] **Pembaruan Status Real-time:** Mengubah status transaksi dari `Dipinjam` menjadi `Kembali` atau `Terlambat` secara otomatis.
+- [x] **Kalkulasi Denda Otomatis:** Menghitung selisih hari keterlambatan terhadap batas kembali. Jika terlambat, sistem menerapkan denda secara presisi sebesar **Rp 5.000 / hari**.
+- [x] **Auto Update Stok (Inkremen):** Stok fisik buku otomatis bertambah kembali 1 (`+1`) di dalam database ketika buku sukses dikembalikan oleh petugas.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 6. Dashboard Analitik Utama
+Pusat kendali visual terpadu untuk membaca ringkasan performa operasional perpustakaan secara instan.
+- [x] **Minimal 6 Komponen Statistik Utama:**
+  - Total Koleksi Buku
+  - Total Anggota Aktif
+  - Transaksi Berjalan (Sedang Dipinjam)
+  - Total Transaksi Selesai
+  - Transaksi Terlambat (Overdue)
+  - Akumulasi Pendapatan Kas Denda (Rp)
+- [x] **2 Charts Visualisasi Interaktif:**
+  - **Line Chart:** Memvisualisasikan tren grafik peminjaman buku dari bulan ke bulan sepanjang tahun berjalan.
+  - **Pie/Bar Chart:** Menampilkan persentase kategori buku yang paling sering dipinjam (Koleksi Terpopuler).
+- [x] **Recent Data Tables:** Menampilkan tabel mini berisi 5 transaksi peminjaman terbaru dan 5 anggota yang baru bergabung untuk pemantauan cepat.
+- [x] **Quick Actions Menu:** Tombol pintas sekali klik untuk langsung menuju form tambah buku, form transaksi baru, dan input anggota tanpa membuka sidebar menu.
 
-### Premium Partners
+### 7. Global Search (Multi-Module Search)
+Fitur penjelajahan data menyeluruh dari satu kolom input tunggal di bagian navbar.
+- [x] **Pencarian Lintas 3 Modul:** Mencari kata kunci sekaligus secara paralel di dalam modul **Buku**, modul **Anggota**, dan modul **Transaksi**.
+- [x] **Hasil Pencarian Berbasis Tabs:** Menampilkan output pencarian yang terorganisir rapi dipisahkan dalam tab Buku, tab Anggota, dan tab Transaksi.
+- [x] **Keyword Highlighting:** Menerapkan penandaan visual (highlighting text) berwarna kuning pada teks yang cocok dengan kata kunci pencarian agar mudah diidentifikasi mata.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### 8. Laporan Transaksi Komprehensif
+Sistem pelaporan performa sirkulasi berkala untuk kebutuhan manajerial perpustakaan.
+- [x] **Multi-Filter Lanjutan:** Filter data laporan yang fleksibel berdasarkan rentang tanggal tertentu (*date range*), status transaksi (`Dipinjam`, `Kembali`, `Denda`), dan nama anggota spesifik.
+- [x] **Ringkasan Statistik Laporan (Summary):** Menampilkan total buku dipinjam, total buku kembali, serta total denda yang terkumpul khusus pada periode yang difilter.
+- [x] **Print-Friendly Design:** Halaman laporan dilengkapi dengan CSS `@media print` khusus, sehingga ketika tombol cetak ditekan, tampilan navbar, sidebar, dan tombol aksi akan otomatis disembunyikan untuk menghasilkan cetakan fisik/PDF yang bersih dan profesional.
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Tech Stack & Arsitektur
 
-## Code of Conduct
+Aplikasi ini dirancang menggunakan standar industri modern untuk memastikan kecepatan, keamanan, dan kemudahan skalabilitas:
+* **Core Framework:** PHP Laravel v11.x (Arsitektur Model-View-Controller)
+* **Database Engine:** MySQL (Dengan optimasi indexing pada Foreign Key)
+* **Frontend UI Engine:** [Bootstrap v5 / Tailwind CSS]
+* **Library Grafik:** Chart.js / ApexCharts (Bekerja secara asinkronus menyerap data JSON)
+* **Manajemen Paket:** Composer (PHP Dependensi) & NPM (Asset Bundler)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## Dokumentasi Antarmuka (Screenshots)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+*Berikut adalah bukti visual fungsionalitas sistem perpustakaan yang telah dibangun:*
 
-## License
+### 1. Sistem Keamanan & Pintu Masuk Aplikasi (Halaman Login)
+<img width="454" height="381" alt="image" src="https://github.com/user-attachments/assets/b49bc372-6c42-443b-8e86-0e577333d84a" />
+*Tampilan form login yang dilengkapi perlindungan CSRF Token dan validasi error real-time.*
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 2. Pusat Kontrol Utama (Dashboard Analitik & 2 Charts)
+<img width="952" height="386" alt="image" src="https://github.com/user-attachments/assets/2613dfc6-e018-4dda-ae3a-f3bdf6045f0e" />
+
+<img width="959" height="320" alt="image" src="https://github.com/user-attachments/assets/6c9af9c5-0838-4feb-b98a-684b2dfe37d6" />
+
+*Menampilkan 6 kartu statistik utama, grafik tren peminjaman (Line), dan komposisi buku terpopuler (Pie/Bar).*
+
+### 3. Manajemen Inventaris Katalog (CRUD Buku & Filter)
+
+<img width="959" height="477" alt="image" src="https://github.com/user-attachments/assets/9a9fb45e-3d47-4a44-b298-6b30b1ef9629" />
+
+<img width="958" height="456" alt="image" src="https://github.com/user-attachments/assets/4fb252dc-524d-4d0a-b79e-579ebd173494" />
+
+*Tampilan tabel data koleksi buku lengkap dengan tombol aksi, pagination, dan kolom pencarian.*
+
+### 4. Sistem Sirkulasi Cerdas (Form Peminjaman & Deteksi Batas Waktu)
+
+<img width="682" height="464" alt="image" src="https://github.com/user-attachments/assets/35082c47-1df7-41c9-9394-215d69fb818b" />
+
+*Formulir peminjaman interaktif yang otomatis mengunci tanggal kembali +7 hari dan mengurangi stok sistem.*
+
+### 5. Modul Manajerial (Laporan Transaksi & Cetak Print-Friendly)
+
+<img width="959" height="478" alt="image" src="https://github.com/user-attachments/assets/efb62d67-d31d-417c-8a73-1cb93a9d794a" />
+
+*Halaman filter laporan komprehensif yang bersih dan siap dicetak ke media fisik atau diekspor ke PDF.*
+
+---
+
+## ⚙️ Panduan Instalasi Lokal (Step-by-Step)
+
+Ikuti instruksi di bawah ini dengan saksama untuk mereplikasi dan menjalankan aplikasi ini di lingkungan komputer lokal Anda:
+
+### 1. Unduh Source Code
+Lakukan *cloning* repositori ini melalui terminal Anda atau unduh file berkas ZIP.
+```bash
+git clone [https://github.com/zalden-programmer/Projek-FINAL-Pemogramman-WEB-2.git](https://github.com/zalden-programmer/Projek-FINAL-Pemogramman-WEB-2.git)
+cd Projek-FINAL-Pemogramman-WEB-2
+```
+### 2. Pasang Dependensi Framework
+Gunakan Composer untuk mengunduh seluruh pustaka (library) backend PHP yang dibutuhkan oleh Laravel berdasarkan berkas pengunci proyek.
+```bash
+composer install
+```
+### 3. Replika Konfigurasi Lingkungan (.env)
+Salin berkas cetak biru pengaturan lokal menjadi file .env aktif yang dibaca sistem.
+```bash
+cp .env.example .env
+```
+### 4. Buat Kunci Enkripsi Aplikasi
+Jalankan perintah ini untuk membuat Application Key unik baru di dalam berkas .env Anda demi keamanan sesi aplikasi.
+```bash
+php artisan key:generate
+```
+### 5. Konfigurasi Koneksi Database
+Buka berkas .env menggunakan teks editor pilihan Anda (misalnya VS Code). Cari baris berikut dan sesuaikan nama databasenya dengan database lokal yang Anda buat di phpMyAdmin:
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=db_perpustakaan_11
+DB_USERNAME=root
+DB_PASSWORD=
+```
+### 6. Eksekusi Struktur Tabel (Migrasi)
+Jalankan sistem migrasi Laravel untuk membangun seluruh arsitektur tabel (books, members, transactions, dll.) secara otomatis ke dalam database MySQL Anda tanpa perlu melakukan import manual.
+```bash
+php artisan db:seed
+```
+
+### 7. Nyalakan Mesin Aplikasi
+Aktifkan XAMPP atau lainnya dan aktifkan server pengembangan lokal bawaan PHP melalui perintah artisan:
+```bash
+php artisan serve
+```
+Aplikasi kini siap diakses penuh. Buka peramban (web browser) Anda lalu arahkan ke alamat URL lokal: http://127.0.0.1:8000.
