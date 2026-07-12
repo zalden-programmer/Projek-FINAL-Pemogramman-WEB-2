@@ -43,15 +43,14 @@ class DashboardController extends Controller
             ];
         });
 
-        // Buku populer
-        $bukuPopuler = Buku::withCount('transaksis')
-            ->orderByDesc('transaksis_count')
-            ->take(5)
-            ->get();
-
         // Data Pie Chart Kategori Buku
         $kategoriChart = Buku::selectRaw('kategori, COUNT(*) as total')
             ->groupBy('kategori')
+            ->get();
+        
+        // Data donut Chart Status Transaksi
+        $statusChart = Transaksi::selectRaw('status, COUNT(*) as total')
+            ->groupBy('status')
             ->get();
 
         // Anggota aktif
@@ -77,8 +76,8 @@ class DashboardController extends Controller
         return view('dashboard', compact(
             'stats',
             'chartData',
-            'bukuPopuler',
             'kategoriChart',
+            'statusChart',
             'anggotaAktif',
             'recentTransaksi',
             'transaksiTerlambat',

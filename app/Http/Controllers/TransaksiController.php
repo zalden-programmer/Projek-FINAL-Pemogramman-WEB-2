@@ -96,6 +96,7 @@ class TransaksiController extends Controller
 
             return redirect()->route('transaksi.index')
                 ->with('success', 'Transaksi peminjaman berhasil dibuat!');
+
         } catch (\Exception $e) {
             return redirect()->back()
                 ->withInput()
@@ -141,6 +142,7 @@ class TransaksiController extends Controller
 
             return redirect()->route('transaksi.show', $id)
                 ->with('success', 'Buku berhasil dikembalikan!');
+                
         } catch (\Exception $e) {
             return redirect()->back()
                 ->with('error', 'Gagal mengembalikan buku: ' . $e->getMessage());

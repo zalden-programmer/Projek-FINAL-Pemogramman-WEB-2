@@ -15,49 +15,42 @@
     </x-slot>
 
     {{-- Statistik --}}
-    <div class="row mt-4 mb-4">
+    <div class="row mt-4 mb-4 g-3">
         <div class="col-md-4">
             <div class="card border-primary">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h6 class="text-muted mb-1">Total Transaksi</h6>
-                            <h2 class="mb-0">{{ $transaksis->count() }}</h2>
-                        </div>
-                        <div class="text-primary">
-                            <i class="bi bi-journal-text" style="font-size: 3rem;"></i>
-                        </div>
+                <div class="card-body d-flex align-items-center gap-3 p-4">
+                    <div class="bg-primary-subtle rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                        style="width: 56px; height: 56px;">
+                        <i class="bi bi-journal-text text-primary fs-4"></i>
                     </div>
+                    <p class="text-muted mb-0 flex-grow-1">Total Transaksi</p>
+                    <h2 class="mb-0 fs-2 fw-bold">{{ $transaksis->count() }}</h2>
                 </div>
             </div>
         </div>
+
         <div class="col-md-4">
             <div class="card border-warning">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h6 class="text-muted mb-1">Sedang Dipinjam</h6>
-                            <h2 class="mb-0">{{ $transaksis->where('status', 'Dipinjam')->count() }}</h2>
-                        </div>
-                        <div class="text-warning">
-                            <i class="bi bi-hourglass-split" style="font-size: 3rem;"></i>
-                        </div>
+                <div class="card-body d-flex align-items-center gap-3 p-4">
+                    <div class="bg-warning-subtle rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                        style="width: 56px; height: 56px;">
+                        <i class="bi bi-hourglass-split text-warning fs-4"></i>
                     </div>
+                    <p class="text-muted mb-0 flex-grow-1">Sedang Dipinjam</p>
+                    <h2 class="mb-0 fs-2 fw-bold">{{ $transaksis->where('status', 'Dipinjam')->count() }}</h2>
                 </div>
             </div>
         </div>
+
         <div class="col-md-4">
             <div class="card border-success">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h6 class="text-muted mb-1">Sudah Dikembalikan</h6>
-                            <h2 class="mb-0">{{ $transaksis->where('status', 'Dikembalikan')->count() }}</h2>
-                        </div>
-                        <div class="text-success">
-                            <i class="bi bi-check-circle-fill" style="font-size: 3rem;"></i>
-                        </div>
+                <div class="card-body d-flex align-items-center gap-3 p-4">
+                    <div class="bg-success-subtle rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                        style="width: 56px; height: 56px;">
+                        <i class="bi bi-check-circle-fill text-success fs-4"></i>
                     </div>
+                    <p class="text-muted mb-0 flex-grow-1">Sudah Dikembalikan</p>
+                    <h2 class="mb-0 fs-2 fw-bold">{{ $transaksis->where('status', 'Dikembalikan')->count() }}</h2>
                 </div>
             </div>
         </div>

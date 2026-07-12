@@ -17,51 +17,42 @@
     </x-slot>
 
     {{-- Statistik Cards --}}
-    <div class="row mt-4 mb-4">
+    <div class="row mt-4 mb-4 g-3">
         <div class="col-md-4">
             <div class="card border-primary">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h6 class="text-muted mb-1">Total Buku</h6>
-                            <h2 class="mb-0">{{ $totalBuku }}</h2>
-                        </div>
-                        <div class="text-primary">
-                            <i class="bi bi-book-fill" style="font-size: 3rem;"></i>
-                        </div>
+                <div class="card-body d-flex align-items-center gap-3 p-4">
+                    <div class="bg-primary-subtle rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                        style="width: 56px; height: 56px;">
+                        <i class="bi bi-book-fill text-primary fs-4"></i>
                     </div>
+                    <p class="text-muted mb-0 flex-grow-1">Total Buku</p>
+                    <h2 class="mb-0 fs-2 fw-bold">{{ $totalBuku }}</h2>
                 </div>
             </div>
         </div>
 
         <div class="col-md-4">
             <div class="card border-success">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h6 class="text-muted mb-1">Buku Tersedia</h6>
-                            <h2 class="mb-0">{{ $bukuTersedia }}</h2>
-                        </div>
-                        <div class="text-success">
-                            <i class="bi bi-check-circle-fill" style="font-size: 3rem;"></i>
-                        </div>
+                <div class="card-body d-flex align-items-center gap-3 p-4">
+                    <div class="bg-success-subtle rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                        style="width: 56px; height: 56px;">
+                        <i class="bi bi-check-circle-fill text-success fs-4"></i>
                     </div>
+                    <p class="text-muted mb-0 flex-grow-1">Buku Tersedia</p>
+                    <h2 class="mb-0 fs-2 fw-bold">{{ $bukuTersedia }}</h2>
                 </div>
             </div>
         </div>
 
         <div class="col-md-4">
             <div class="card border-danger">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h6 class="text-muted mb-1">Buku Habis</h6>
-                            <h2 class="mb-0">{{ $bukuHabis }}</h2>
-                        </div>
-                        <div class="text-danger">
-                            <i class="bi bi-x-circle-fill" style="font-size: 3rem;"></i>
-                        </div>
+                <div class="card-body d-flex align-items-center gap-3 p-4">
+                    <div class="bg-danger-subtle rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                        style="width: 56px; height: 56px;">
+                        <i class="bi bi-x-circle-fill text-danger fs-4"></i>
                     </div>
+                    <p class="text-muted mb-0 flex-grow-1">Buku Habis</p>
+                    <h2 class="mb-0 fs-2 fw-bold">{{ $bukuHabis }}</h2>
                 </div>
             </div>
         </div>
@@ -164,8 +155,8 @@
             </div>
         </div>
     </div>
-    {{-- Bulk Delete Form --}}
 
+    {{-- Bulk Delete Form --}}
     <form id="bulk-delete-form" action="{{ route('buku.bulk-delete') }}" method="POST">
         @csrf
         <div class="mb-3">

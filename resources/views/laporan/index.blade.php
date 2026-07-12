@@ -8,6 +8,70 @@
         </div>
     </x-slot>
 
+    {{-- Summary Cards --}}
+    <div class="row g-3 mt-4 mb-4">
+        <div class="col-md-3">
+            <div class="card border-primary">
+                <div class="card-body d-flex align-items-center gap-3 p-4">
+                    <div class="bg-primary-subtle rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                        style="width: 56px; height: 56px;">
+                        <i class="bi bi-journal-text text-primary fs-4"></i>
+                    </div>
+                    <div>
+                        <p class="text-muted mb-0">Total Transaksi</p>
+                        <h2 class="mb-0 fs-2 fw-bold">{{ $summary['total'] }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-warning">
+                <div class="card-body d-flex align-items-center gap-3 p-4">
+                    <div class="bg-warning-subtle rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                        style="width: 56px; height: 56px;">
+                        <i class="bi bi-hourglass-split text-warning fs-4"></i>
+                    </div>
+                    <div>
+                        <p class="text-muted mb-0">Dipinjam</p>
+                        <h2 class="mb-0 fs-2 fw-bold">{{ $summary['dipinjam'] }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-success">
+                <div class="card-body d-flex align-items-center gap-3 p-4">
+                    <div class="bg-success-subtle rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                        style="width: 56px; height: 56px;">
+                        <i class="bi bi-check-circle-fill text-success fs-4"></i>
+                    </div>
+                    <div>
+                        <p class="text-muted mb-0">Dikembalikan</p>
+                        <h2 class="mb-0 fs-2 fw-bold">{{ $summary['dikembalikan'] }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-danger">
+                <div class="card-body d-flex align-items-center gap-3 p-4">
+                    <div class="bg-danger-subtle rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                        style="width: 56px; height: 56px;">
+                        <i class="bi bi-cash-stack text-danger fs-4"></i>
+                    </div>
+                    <div>
+                        <p class="text-muted mb-0">Total Denda</p>
+                        <h2 class="mb-0 fs-4 fw-bold">Rp {{ number_format($summary['total_denda'], 0, ',', '.') }}
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container py-4">
 
         {{-- Filter Form --}}
@@ -54,42 +118,6 @@
                         </button>
                     </div>
                 </form>
-            </div>
-        </div>
-
-        {{-- Summary Cards --}}
-        <div class="row g-3 mb-4">
-            <div class="col-md-3">
-                <div class="card bg-primary text-white">
-                    <div class="card-body text-center">
-                        <h6>Total Transaksi</h6>
-                        <h3>{{ $summary['total'] }}</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card bg-warning text-dark">
-                    <div class="card-body text-center">
-                        <h6>Dipinjam</h6>
-                        <h3>{{ $summary['dipinjam'] }}</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card bg-success text-white">
-                    <div class="card-body text-center">
-                        <h6>Dikembalikan</h6>
-                        <h3>{{ $summary['dikembalikan'] }}</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card bg-danger text-white">
-                    <div class="card-body text-center">
-                        <h6>Total Denda</h6>
-                        <h3>Rp {{ number_format($summary['total_denda'], 0, ',', '.') }}</h3>
-                    </div>
-                </div>
             </div>
         </div>
 
